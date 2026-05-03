@@ -12,7 +12,23 @@ sudo dokku plugin:install https://github.com/s-stude/dokku-workspaces-plugin.git
 
 ## Usage
 
-### 1. Add a `.dokku-workspaces` file to your repo root
+### 1. Declare workspaces in your root `package.json`
+
+The workspace directories listed in `.dokku-workspaces` must also be declared in your root `package.json`:
+
+```json
+{
+  "workspaces": [
+    "packages/app",
+    "packages/admin",
+    "packages/api"
+  ]
+}
+```
+
+The `-w` flag used in the generated Procfile resolves workspace names through npm. If a workspace directory is missing from this array, the deploy will fail with `No workspaces found`.
+
+### 2. Add a `.dokku-workspaces` file to your repo root
 
 Map Dokku app names to workspace directories:
 
@@ -23,7 +39,7 @@ my-admin=packages/admin
 my-api=packages/api
 ```
 
-### 2. Create Dokku apps on the server
+### 3. Create Dokku apps on the server
 
 ```bash
 dokku apps:create my-app
@@ -31,7 +47,7 @@ dokku apps:create my-admin
 dokku apps:create my-api
 ```
 
-### 3. Add git remotes and push
+### 4. Add git remotes and push
 
 ```bash
 git remote add dokku-app dokku@your-server:my-app
