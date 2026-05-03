@@ -7,7 +7,7 @@ Unlike [dokku-monorepo](https://github.com/notpushkin/dokku-monorepo), this plug
 ## Install
 
 ```bash
-sudo dokku plugin:install https://github.com/s-stude/dokku-workspaces.git dokku-workspaces
+sudo dokku plugin:install https://github.com/s-stude/dokku-workspaces-plugin.git dokku-workspaces
 ```
 
 ## Usage
